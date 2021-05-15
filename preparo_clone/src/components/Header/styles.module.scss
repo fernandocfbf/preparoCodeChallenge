@@ -2,7 +2,7 @@
   display: flex;
   width: 100%;
   height: 70px;
-  background: var(--background);
+  background: var(--header_background);
   align-items: center;
 
   img {
@@ -56,7 +56,7 @@
 }
 
 .bell {
-  height: 80%;
+  height: 56px;
   width: 56px;
   background: transparent;
   transition: background-color 150ms;
@@ -70,7 +70,7 @@
 
 .user{
   margin-left: 12px;
-  height: 80%;
+  height: 56px;
   width: 56px;
   background: var(--blue);
 }
