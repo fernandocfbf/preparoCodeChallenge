@@ -1,0 +1,90 @@
+.localizacao {
+  width: 100%;
+  background-color: var(--general_background);
+}
+
+.title {
+  margin: auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  p {
+    margin-top: 5%;
+    text-transform: uppercase;
+  }
+}
+
+.instructions {
+  margin: auto;
+  background-color: var(--container_background);
+  padding: 1rem 1rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.18);
+  border-radius: 0.5rem;
+  width: 80%;
+  max-width: 1080px;
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+
+  .instructionsText {
+    width: 50%;
+    height: 100%;
+    display: block;
+    align-items: center;
+  }
+
+  .fields {
+    width: 50%;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .blanks {
+    width: 100%;
+    padding: 0.5rem 0.5rem;
+
+    .checkedInput {
+      width: 90%;
+      border-radius: 1px;
+      margin-top: 10px;
+      height: 1.5rem;
+      padding: 0.375rem 0.75rem;
+      font-size: 1rem;
+      background-color: transparent;
+      background-clip: padding-box;
+      border: 1px solid gray;
+    }
+
+    .errorInput{
+      width: 90%;
+      border-radius: 1px;
+      margin-top: 10px;
+      height: 1.5rem;
+      padding: 0.375rem 0.75rem;
+      font-size: 1rem;
+      background-color: transparent;
+      background-clip: padding-box;
+      border: 1px solid var(--red);
+    }
+  }
+}
+
+.atualizar {
+  margin: auto;
+  padding: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+
+  button {
+    width: 10rem;
+    height: 3rem;
+    font-size: large;
+    background-color: var(--red);
+    border: none;
+    padding: 0.5rem 2rem;
+    border-radius: 0.5rem;
+    color: white;
+  }
+}
