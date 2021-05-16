@@ -14,11 +14,14 @@
   width: 100%;
 
   button {
+    width: 10rem;
+    height: 3rem;
+    font-size: large;
     background-color: var(--red);
-    height: 35px;
-    width: 150px;
+    border: none;
+    padding: 0.5rem 2rem;
+    border-radius: 0.5rem;
     color: white;
-    border-radius: 5px;
   }
 }
 
