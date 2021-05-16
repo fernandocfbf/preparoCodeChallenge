@@ -16,10 +16,10 @@ export default function Header(){
       <p>inscrições</p>
       <span></span>
       <button className={styles.bell}>
-        <AiTwotoneBell color="#c93b59" size="50%"></AiTwotoneBell>
+        <AiTwotoneBell color="#c93b59" size="35px"></AiTwotoneBell>
       </button>
       <button className={styles.user} onClick={()=> setEnableMenu(!enable_menu)}>
-        <AiOutlineUser color="#ffff" size="70%"></AiOutlineUser>
+        <AiOutlineUser color="#ffff" size="35px"></AiOutlineUser>
       </button>
 
       {enable_menu ? 

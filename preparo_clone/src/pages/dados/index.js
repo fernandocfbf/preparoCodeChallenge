@@ -28,11 +28,8 @@ export default function Dados() {
             <AiOutlineUser size="180px"></AiOutlineUser>
             <button>Carregar foto</button>
           </div>
-
         </div>
-
-
-
+        
         <div className={styles.box}>
 
           <div className={styles.text}>

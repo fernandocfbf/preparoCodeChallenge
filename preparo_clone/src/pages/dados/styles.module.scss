@@ -76,3 +76,20 @@
   display: flex;
   flex-direction: column;
 }
+
+@media only screen and (max-width: 850px) {
+
+  .box{
+    flex-direction: column;
+  }
+
+  .text{
+    width: 100%;
+  }
+
+  .fields{
+    margin-top: 2rem;
+    width: 100%;
+  }
+
+}

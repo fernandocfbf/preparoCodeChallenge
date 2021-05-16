@@ -22,7 +22,7 @@ export default function Submenu() {
       </div>
 
       <div className={styles.icon}>
-        <img src={'/logo192'}/>
+        <BiExit></BiExit>
         <p>Sobre nós</p>
       </div>
 
