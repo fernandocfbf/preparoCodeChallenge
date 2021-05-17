@@ -4,15 +4,15 @@ import { BiExit } from 'react-icons/bi'
 export default function Submenu() {
   return (
     <div className={styles.submenu}>
-      <p>Dados básicos</p>
-      <p>Currículo</p>
-      <p>Localização</p>
-      <p>Identificação</p>
-      <p>Formação</p>
-      <p>Habilidades</p>
-      <p>Testes</p>
-      <p>Experiências</p>
-      <p>Premiações</p>
+      <a href="http://localhost:3000/dados">Dados básicos</a>
+      <a>Currículo</a>
+      <a href="http://localhost:3000/localizacao">Localização</a>
+      <a>Identificação</a>
+      <a>Formação</a>
+      <a>Habilidades</a>
+      <a>Testes</a>
+      <a>Experiências</a>
+      <a>Premiações</a>
 
       <span></span>
 

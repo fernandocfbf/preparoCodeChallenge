@@ -13,6 +13,17 @@ export default function Dados() {
   const [behance, setBehance] = useState("")
   const [linkedin, setLinkedin] = useState("")
 
+  function handlerCell(text) {
+    text = text.replace(/\D/g, ""); //remove o que não é dígito
+
+    if ((Number(text) || text == "") && text.length < 12) {
+      text = text.replace(/^(\d{2})(\d)/g, "($1) $2"); //parênteses nos dois primeiros
+      text = text.replace(/(\d)(\d{4})$/, "$1-$2");    //hífen
+      setTelefone(text)
+    }
+
+  }
+
   return (
     <div className={styles.dados}>
       <Header></Header>
@@ -29,7 +40,7 @@ export default function Dados() {
             <button>Carregar foto</button>
           </div>
         </div>
-        
+
         <div className={styles.box}>
 
           <div className={styles.text}>
@@ -75,7 +86,7 @@ export default function Dados() {
               type="text"
               placeholder="(00) 00000-0000"
               value={telefone}
-              onChange={(e) => setTelefone(e.target.value)}></input>
+              onChange={(e) => handlerCell(e.target.value)}></input>
           </div>
         </div>
 

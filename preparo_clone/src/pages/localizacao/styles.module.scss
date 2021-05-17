@@ -88,3 +88,23 @@
     color: white;
   }
 }
+
+@media only screen and (max-width: 850px) {
+  
+  .instructions{
+    display: flex;
+
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .instructionsText{
+    width: 100%;
+  }
+
+  .fields {
+    width: 100%;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+}
