@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-d
 import Inicio from './pages/inicio'
 import Localizacao from './pages/localizacao'
 import Dados from './pages/dados'
+import Login from './pages/login'
 
 const Routes = () => (
   <Router>
@@ -11,7 +12,8 @@ const Routes = () => (
           <Route path="/perfil" component={Inicio}></Route>
           <Route path="/localizacao" component={Localizacao}></Route>
           <Route path="/dados" component={Dados}></Route>
-          <Redirect to='dados'></Redirect>
+          <Route path="/login" component={Login}></Route>
+          <Redirect to='login'></Redirect>
       </Switch>
   </Router>
 )
