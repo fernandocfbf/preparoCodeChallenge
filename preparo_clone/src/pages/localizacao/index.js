@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Header from '../../components/Header'
 import styles from './styles.module.scss'
+import api from '../../services/api'
 
 export default function Localizacao() {
 
@@ -15,6 +16,12 @@ export default function Localizacao() {
   const [bairroError, setBairroError] = useState(false)
   const [enderecoError, setEnderecoError] = useState(false)
   const [numeroError, setNumeroError] = useState(false)
+
+  api.get("/").then(
+    resp => {
+      console.log(resp)
+    }
+  )
 
   const class_functions = {
     'cidade': [setCidade, setCidadeError],
