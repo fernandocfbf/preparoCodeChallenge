@@ -7,27 +7,25 @@ export default function Localizacao() {
 
   const [cep, setCep] = useState("")
   const [cidade, setCidade] = useState("")
+  const [estado, setEstado] = useState("")
   const [bairro, setBairro] = useState("")
   const [endereco, setEndereco] = useState("")
   const [numero, setNumero] = useState("")
+  const [complemento, setComplemento] = useState("")
 
   const [cepError, setCepError] = useState(false)
   const [cidadeError, setCidadeError] = useState(false)
+  const [estadoError, setEstadoError] = useState(false)
   const [bairroError, setBairroError] = useState(false)
   const [enderecoError, setEnderecoError] = useState(false)
   const [numeroError, setNumeroError] = useState(false)
 
-  api.get("/").then(
-    resp => {
-      console.log(resp)
-    }
-  )
-
   const class_functions = {
     'cidade': [setCidade, setCidadeError],
+    'estado': [setEstado, setEstadoError],
     'bairro': [setBairro, setBairroError],
     'endereco': [setEndereco, setEnderecoError],
-    'numero': [setNumero, setNumeroError]
+    'numero': [setNumero, setNumeroError],
   }
 
   function handlerCep(text) {
@@ -60,6 +58,21 @@ export default function Localizacao() {
       set_variable(text)
     }
 
+  }
+
+  function atualiza(cep, cidade, estado, bairro, endereco, numero, complemento){
+    api.post("/upDateLocation", {
+      user: 'fernando',
+      cep: cep,
+      cidade: cidade,
+      estado: estado,
+      bairro: bairro,
+      endereco: endereco,
+      numero: numero,
+      complemento: complemento
+    }).then(resp => {
+      console.log("atualizado")
+    })
   }
 
   return (
@@ -110,7 +123,9 @@ export default function Localizacao() {
               className={styles.checkedInput}
               type="dropdown"
               placeholder="Selecione o estado"
+              onChange={(e) => handlerAll(e.target.value, "estado")}
             ></input>
+            {estadoError ? (<text>Você precisa inserir o nome do seu estado</text>) : ""}
           </div>
 
           <div className={styles.blanks}>
@@ -151,13 +166,24 @@ export default function Localizacao() {
             <input
               type="text"
               className={styles.checkedInput}
-              placeholder="Insira um complemento se achar necessário"></input>
+              placeholder="Insira um complemento se achar necessário"
+              onChange={(e) => setComplemento(e.target.value)}
+              ></input>
           </div>
         </div>
       </div>
 
       <div className={styles.atualizar}>
-        <button>Atualizar</button>
+        <button
+        onClick={() => atualiza(
+          cep,
+          cidade,
+          estado,
+          bairro,
+          endereco,
+          numero,
+          complemento)}
+        >Atualizar</button>
       </div>
 
     </div>

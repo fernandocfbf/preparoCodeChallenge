@@ -2,6 +2,7 @@ import Header from '../../components/Header'
 import styles from './styles.module.scss'
 import { AiOutlineUser } from 'react-icons/ai'
 import { useState } from 'react'
+import api from  '../../services/api'
 
 export default function Dados() {
 
@@ -22,6 +23,21 @@ export default function Dados() {
       setTelefone(text)
     }
 
+  }
+
+  function atualiza(email, nome, sobrenome, telefone, git, behance, linkedin){
+    api.post("/upDateDados", {
+      user: 'fernando',
+      email: email,
+      nome: nome,
+      sobrenome: sobrenome,
+      telefone: telefone,
+      git: git,
+      behance: behance,
+      linkedin: linkedin
+    }).then(resp => {
+      console.log("atualizado")
+    })
   }
 
   return (
@@ -122,7 +138,14 @@ export default function Dados() {
         </div>
 
         <div className={styles.center}>
-          <button>Atualizar </button>
+          <button onClick={() => atualiza(
+            email, 
+            nome, 
+            sobrenome, 
+            telefone,
+            git, 
+            behance, 
+            linkedin)}>Atualizar </button>
         </div>
 
       </div>
