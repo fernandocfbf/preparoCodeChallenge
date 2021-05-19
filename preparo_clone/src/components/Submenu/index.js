@@ -5,14 +5,14 @@ export default function Submenu() {
   return (
     <div className={styles.submenu}>
       <a href="http://localhost:3000/dados">Dados básicos</a>
-      <a>Currículo</a>
+      <a href="#/">Currículo</a>
       <a href="http://localhost:3000/localizacao">Localização</a>
-      <a>Identificação</a>
-      <a>Formação</a>
-      <a>Habilidades</a>
-      <a>Testes</a>
-      <a>Experiências</a>
-      <a>Premiações</a>
+      <a href="#/">Identificação</a>
+      <a href="#/">Formação</a>
+      <a href="#/">Habilidades</a>
+      <a href="#/">Testes</a>
+      <a href="#/">Experiências</a>
+      <a href="#/">Premiações</a>
 
       <span></span>
 
@@ -23,7 +23,7 @@ export default function Submenu() {
 
       <div className={styles.icon}>
         <BiExit></BiExit>
-        <a>Sobre nós</a>
+        <a href="#/">Sobre nós</a>
       </div>
 
     </div>

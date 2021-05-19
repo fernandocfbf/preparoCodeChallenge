@@ -12,6 +12,7 @@ export default function Localizacao() {
   const [endereco, setEndereco] = useState("")
   const [numero, setNumero] = useState("")
   const [complemento, setComplemento] = useState("")
+  const [message, setMessage] = useState("")
 
   const [cepError, setCepError] = useState(false)
   const [cidadeError, setCidadeError] = useState(false)
@@ -21,27 +22,24 @@ export default function Localizacao() {
   const [numeroError, setNumeroError] = useState(false)
 
   const class_functions = {
-    'cidade': [setCidade, setCidadeError],
-    'estado': [setEstado, setEstadoError],
-    'bairro': [setBairro, setBairroError],
-    'endereco': [setEndereco, setEnderecoError],
-    'numero': [setNumero, setNumeroError],
-    'complemento': [setComplemento],
-    'cep': [setCep]
+    'cidade': [setCidade, setCidadeError, cidade],
+    'estado': [setEstado, setEstadoError, estado],
+    'bairro': [setBairro, setBairroError, bairro],
+    'endereco': [setEndereco, setEnderecoError, endereco],
+    'numero': [setNumero, setNumeroError, numero],
+    'cep': [setCep, setCepError, cep],
+    'complemento': [setComplemento]
+    
   }
 
   useEffect(() => {
-    api.get('/location').then(resp =>{
+    api.get('/location').then(resp => {
 
       const json = resp.data.info
-      console.log(json)
-      for (var key in class_functions){
+      for (var key in class_functions) {
         const set = class_functions[key][0] //setFunction
         json[key] == undefined ? set("") : set(json[key])
-        console.log(json[key])
       }
-      
-      console.log(cidade)
     })
   }, [])
 
@@ -73,18 +71,31 @@ export default function Localizacao() {
     }
   }
 
-  function atualiza(cep, cidade, estado, bairro, endereco, numero, complemento){
-    api.post("/upDateLocation", {
-      cep: cep,
-      cidade: cidade,
-      estado: estado,
-      bairro: bairro,
-      endereco: endereco,
-      numero: parseInt(numero),
-      complemento: complemento
-    }).then(resp => {
-      console.log("atualizado")
-    })
+  function atualiza(cep, cidade, estado, bairro, endereco, numero, complemento, functions) {
+    var checked = true //inicialmente, poderá confirmar a operação
+    for(var key in functions){
+
+      if(functions[key][2] == "" && key != 'complemento'){
+        const set = functions[key][1]
+        set(true) //seta o campo como errado
+        checked = false
+      }
+    }
+
+    if(checked) {
+      api.post("/upDateLocation", {
+        cep: cep,
+        cidade: cidade,
+        estado: estado,
+        bairro: bairro,
+        endereco: endereco,
+        numero: parseInt(numero),
+        complemento: complemento
+      }).then(resp => {
+        window.location.reload();
+      })
+    }
+
   }
 
   return (
@@ -146,9 +157,10 @@ export default function Localizacao() {
             <input
               className={bairroError ? styles.errorInput : styles.checkedInput}
               type="text"
+              value={bairro}
               placeholder="Insira o nome de seu bairro"
               onChange={(e) => handlerAll(e.target.value, "bairro")}
-              ></input>
+            ></input>
             {bairroError ? (<text>Você precisa inserir o nome de seu bairro</text>) : ""}
           </div>
 
@@ -160,7 +172,7 @@ export default function Localizacao() {
               value={endereco}
               placeholder="Insira seu endereço"
               onChange={(e) => handlerAll(e.target.value, "endereco")}
-              ></input>
+            ></input>
             {enderecoError ? (<text>Você precisa inserir seu endereço</text>) : ""}
           </div>
 
@@ -172,35 +184,42 @@ export default function Localizacao() {
               value={numero}
               placeholder="Insira o número de sua residência"
               onChange={(e) => handlerAll(e.target.value, "numero")}
-              ></input>
+            ></input>
             {numeroError ? (<text>Você precisa inserir o número de sua residência</text>) : ""}
           </div>
 
           <div className={styles.blanks}>
-            <p>Complemento*</p>
+            <p>Complemento</p>
             <input
               type="text"
               value={complemento}
               className={styles.checkedInput}
               placeholder="Insira um complemento se achar necessário"
               onChange={(e) => setComplemento(e.target.value)}
-              ></input>
+            ></input>
           </div>
         </div>
       </div>
 
       <div className={styles.atualizar}>
+
+        <div className={styles.message}>
+          <p>{message}</p>
+        </div>
+        
         <button
-        onClick={() => atualiza(
-          cep,
-          cidade,
-          estado,
-          bairro,
-          endereco,
-          numero,
-          complemento)}
+          onClick={() => atualiza(
+            cep,
+            cidade,
+            estado,
+            bairro,
+            endereco,
+            numero,
+            complemento, 
+            class_functions)}
         >Atualizar</button>
       </div>
+
 
     </div>
   )

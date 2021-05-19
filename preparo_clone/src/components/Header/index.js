@@ -10,7 +10,7 @@ export default function Header(){
   return(
     <div className={styles.header}>
       <button className={styles.logo}>
-        <img src={'/logo192.png'}></img>
+        <img src={'/logo192.png'} alt="Logo da empresa"></img>
       </button>
       <p>explorar</p>
       <p>inscrições</p>
