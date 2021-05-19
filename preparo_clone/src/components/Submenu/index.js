@@ -18,12 +18,12 @@ export default function Submenu() {
 
       <div className={styles.icon}>
         <BiExit></BiExit>
-        <p>Sair</p>
+        <a href="http://localhost:3000/login">Sair</a>
       </div>
 
       <div className={styles.icon}>
         <BiExit></BiExit>
-        <p>Sobre nós</p>
+        <a>Sobre nós</a>
       </div>
 
     </div>

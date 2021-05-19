@@ -27,7 +27,6 @@ export default function Dados() {
 
   function atualiza(email, nome, sobrenome, telefone, git, behance, linkedin){
     api.post("/upDateDados", {
-      user: 'fernando',
       email: email,
       nome: nome,
       sobrenome: sobrenome,

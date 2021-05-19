@@ -55,7 +55,6 @@ export default function Login() {
   }
 
   return (
-
     <div className={styles.login}>
       {redirect ? <Redirect to='/perfil' /> : null}
       <div className={styles.fieldBox}>

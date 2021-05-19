@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Header from '../../components/Header'
 import styles from './styles.module.scss'
 import api from '../../services/api'
@@ -26,7 +26,24 @@ export default function Localizacao() {
     'bairro': [setBairro, setBairroError],
     'endereco': [setEndereco, setEnderecoError],
     'numero': [setNumero, setNumeroError],
+    'complemento': [setComplemento],
+    'cep': [setCep]
   }
+
+  useEffect(() => {
+    api.get('/location').then(resp =>{
+
+      const json = resp.data.info
+      console.log(json)
+      for (var key in class_functions){
+        const set = class_functions[key][0] //setFunction
+        json[key] == undefined ? set("") : set(json[key])
+        console.log(json[key])
+      }
+      
+      console.log(cidade)
+    })
+  }, [])
 
   function handlerCep(text) {
     text = text.replace(/\D/g, ""); //remove o que não é dígito
@@ -50,25 +67,20 @@ export default function Localizacao() {
     //pega a funcao que atualiza a variável
     const set_variable = class_functions[classe][0]
 
+    set_variable(text)
     if (text == "") {
       set_error(true) //atualiza o campo para errado
     }
-
-    else {
-      set_variable(text)
-    }
-
   }
 
   function atualiza(cep, cidade, estado, bairro, endereco, numero, complemento){
     api.post("/upDateLocation", {
-      user: 'fernando',
       cep: cep,
       cidade: cidade,
       estado: estado,
       bairro: bairro,
       endereco: endereco,
-      numero: numero,
+      numero: parseInt(numero),
       complemento: complemento
     }).then(resp => {
       console.log("atualizado")
@@ -103,7 +115,6 @@ export default function Localizacao() {
               onChange={(e) => handlerCep(e.target.value)}></input>
 
             {cepError ? (<text>Você precisa inserir um CEP válido</text>) : ""}
-
           </div>
 
           <div className={styles.blanks}>
@@ -111,6 +122,7 @@ export default function Localizacao() {
             <input
               className={cidadeError ? styles.errorInput : styles.checkedInput}
               type="text"
+              value={cidade}
               placeholder="Insira o nome da sua cidade atual"
               onChange={(e) => handlerAll(e.target.value, "cidade")}
             ></input>
@@ -122,6 +134,7 @@ export default function Localizacao() {
             <input
               className={styles.checkedInput}
               type="dropdown"
+              value={estado}
               placeholder="Selecione o estado"
               onChange={(e) => handlerAll(e.target.value, "estado")}
             ></input>
@@ -144,6 +157,7 @@ export default function Localizacao() {
             <input
               className={enderecoError ? styles.errorInput : styles.checkedInput}
               type="text"
+              value={endereco}
               placeholder="Insira seu endereço"
               onChange={(e) => handlerAll(e.target.value, "endereco")}
               ></input>
@@ -155,6 +169,7 @@ export default function Localizacao() {
             <input
               className={numeroError ? styles.errorInput : styles.checkedInput}
               type="text"
+              value={numero}
               placeholder="Insira o número de sua residência"
               onChange={(e) => handlerAll(e.target.value, "numero")}
               ></input>
@@ -165,6 +180,7 @@ export default function Localizacao() {
             <p>Complemento*</p>
             <input
               type="text"
+              value={complemento}
               className={styles.checkedInput}
               placeholder="Insira um complemento se achar necessário"
               onChange={(e) => setComplemento(e.target.value)}
