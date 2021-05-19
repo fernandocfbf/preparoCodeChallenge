@@ -78,7 +78,8 @@ export default function Localizacao() {
       if(functions[key][2] == "" && key != 'complemento'){
         const set = functions[key][1]
         set(true) //seta o campo como errado
-        checked = false
+        setMessage("Preencha todos os campos obrigatórios!") //mensagem de erro
+        checked = false //não faz requisição para atualizar info
       }
     }
 
@@ -92,7 +93,7 @@ export default function Localizacao() {
         numero: parseInt(numero),
         complemento: complemento
       }).then(resp => {
-        window.location.reload();
+        window.location.reload()
       })
     }
 
