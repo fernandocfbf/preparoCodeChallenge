@@ -11,7 +11,7 @@ function Login() {
   useEffect(() => {
     isLogged().then((response) => {
       setLogado(response);
-      setLoading(true); //mudar para false
+      setLoading(false);
     })
       .catch((err) => {
         console.log(err);
