@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Route, Redirect } from 'react-router';
 import isLogged from './isLogged';
+import styles from './styles.module.scss'
 
 function Login() {
 
@@ -9,9 +10,8 @@ function Login() {
 
   useEffect(() => {
     isLogged().then((response) => {
-      console.log("A REPSOSTA: ", response)
       setLogado(response);
-      setLoading(false);
+      setLoading(true); //mudar para false
     })
       .catch((err) => {
         console.log(err);
@@ -28,8 +28,8 @@ const PrivateRoute = (props) => {
 
   if (loading) {
     return (
-      <div>
-        <h1>Loading</h1>
+      <div className={styles.spinner}>
+        <img src='/loading.gif'></img>
       </div>
     )
   } else if (logado) {
