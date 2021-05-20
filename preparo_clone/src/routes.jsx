@@ -5,13 +5,14 @@ import Inicio from './pages/inicio'
 import Localizacao from './pages/localizacao'
 import Dados from './pages/dados'
 import Login from './pages/login'
+import PrivateRoute from './services/privateRoute'
 
 const Routes = () => (
   <Router>
       <Switch>
-          <Route path="/perfil" component={Inicio}></Route>
-          <Route path="/localizacao" component={Localizacao}></Route>
-          <Route path="/dados" component={Dados}></Route>
+          <PrivateRoute path="/perfil" component={Inicio}></PrivateRoute>
+          <PrivateRoute path="/localizacao" component={Localizacao}></PrivateRoute>
+          <PrivateRoute path="/dados" component={Dados}></PrivateRoute>
           <Route path="/login" component={Login}></Route>
           <Redirect to='login'></Redirect>
       </Switch>
