@@ -99,7 +99,22 @@ export default function Dados() {
         window.location.reload();
       })
     }
+  }
 
+  function atualizaEmail(email){
+
+    //se o campo estiver vazio, ou não for válido...
+    if(email == "" || email.indexOf("@") == -1){
+      setEmailError(true) //mensagem de erro
+    }
+
+    else{
+      api.post("/upDateEmail", {
+        email: email
+      }).then(resp => {
+        window.location.reload();
+      })
+    }
   }
 
   return (
@@ -135,7 +150,9 @@ export default function Dados() {
               value={email}
               onChange={(e) => handlerAll(e.target.value, 'email')}></input>
             {emailError ? <text>Insira seu endereço de email</text> : ""}
-            <button>Atualizar email</button>
+            <button
+            onClick={() => atualizaEmail(email)}
+            >Atualizar email</button>
           </div>
         </div>
 
